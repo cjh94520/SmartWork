@@ -16,12 +16,18 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "ANALYTICS_SWITCH", "false"
-            buildConfigField("String","MTA_APP_KEY","\"123456\"")
+            buildConfigField("String", "MTA_APP_KEY", "\"123456\"")
+
+            buildConfigField "boolean", "LOG_SWITCH", "true"
+            buildConfigField "boolean", "LEAK_SWITCH", "true"
         }
 
         debug {
             buildConfigField "boolean", "ANALYTICS_SWITCH", "false"
-            buildConfigField("String","MTA_APP_KEY","\"123456\"")
+            buildConfigField("String", "MTA_APP_KEY", "\"123456\"")
+
+            buildConfigField "boolean", "LOG_SWITCH", "false"
+            buildConfigField "boolean", "LEAK_SWITCH", "false"
         }
     }
 }
@@ -33,4 +39,9 @@ dependencies {
 
     debugCompile 'com.apkfuns.logutils:library:1.4.2'
     releaseCompile 'com.apkfuns.logutils:logutils-no-op:1.4.2.1'
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+
+    compile project(':jpinyin')
 }
