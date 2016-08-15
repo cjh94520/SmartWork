@@ -8,18 +8,32 @@ import android.content.res.Resources;
  */
 public class DeviceUtil {
 
+    /**
+     * 获取屏幕Density
+     */
     public static float getDensity() {
         return Resources.getSystem().getDisplayMetrics().density;
     }
 
+
+    /**
+     * 获取屏幕Dpi
+     */
     public static int getDPI() {
         return Resources.getSystem().getDisplayMetrics().densityDpi;
     }
 
+
+    /**
+     * 获取屏幕宽度像素点
+     */
     public static int getWidthPixel() {
         return Resources.getSystem().getDisplayMetrics().widthPixels;
     }
 
+    /**
+     * 获取屏幕高度像素点
+     */
     public static int getHeightPixel() {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
