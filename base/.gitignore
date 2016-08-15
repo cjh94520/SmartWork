@@ -26,4 +26,3 @@ libs/android-support-v4.jar.properties
 /xrecyclerview/build/*
 *.log
 *.apk
-src/main/res/drawable/
