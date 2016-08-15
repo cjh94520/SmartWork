@@ -22,13 +22,18 @@ public class AnalyticsManager implements AnalyticsLogger {
         return manager;
     }
 
-    private Set<AnalyticsLogger> mAnalyticsSet = new HashSet<>();
-
-    public void addAnalytics(String analyticsConst) {
-        if (AnalyticsConst.MTA_ANALYTICS.equals(analyticsConst)) {
-            mAnalyticsSet.add(new MTALogger());
-        }
+    public void init(Context context)
+    {
+        mAnalyticsSet.add(new MTALogger(context));
     }
+
+    private static boolean isEnabled = false;
+
+    public static void setSwitch(boolean isEnable) {
+        isEnable = isEnable;
+    }
+
+    private Set<AnalyticsLogger> mAnalyticsSet = new HashSet<>();
 
     public void cleanAll() {
         if (mAnalyticsSet != null && !mAnalyticsSet.isEmpty()) {
@@ -43,6 +48,7 @@ public class AnalyticsManager implements AnalyticsLogger {
 
     @Override
     public void onResume(Context context) {
+        if (!isEnabled) return;
         if (mAnalyticsSet != null && !mAnalyticsSet.isEmpty()) {
             for (AnalyticsLogger logger : mAnalyticsSet) {
                 logger.onResume(context);
@@ -52,9 +58,30 @@ public class AnalyticsManager implements AnalyticsLogger {
 
     @Override
     public void onPause(Context context) {
+        if (!isEnabled) return;
         if (mAnalyticsSet != null && !mAnalyticsSet.isEmpty()) {
             for (AnalyticsLogger logger : mAnalyticsSet) {
                 logger.onPause(context);
+            }
+        }
+    }
+
+    @Override
+    public void onStop(Context context) {
+        if (!isEnabled) return;
+        if (mAnalyticsSet != null && !mAnalyticsSet.isEmpty()) {
+            for (AnalyticsLogger logger : mAnalyticsSet) {
+                logger.onStop(context);
+            }
+        }
+    }
+
+    @Override
+    public void onLowMemory(Context context) {
+        if (!isEnabled) return;
+        if (mAnalyticsSet != null && !mAnalyticsSet.isEmpty()) {
+            for (AnalyticsLogger logger : mAnalyticsSet) {
+                logger.onLowMemory(context);
             }
         }
     }

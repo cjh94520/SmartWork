@@ -9,4 +9,8 @@ public interface AnalyticsLogger {
     void onResume(Context context);
 
     void onPause(Context context);
+
+    void onStop(Context context);
+
+    void onLowMemory(Context context);
 }

@@ -15,3 +15,5 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class com.tencent.stat.**  {* ;}
+-keep class com.tencent.mid.**  {* ;}

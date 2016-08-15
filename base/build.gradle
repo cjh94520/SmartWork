@@ -15,6 +15,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "ANALYTICS_SWITCH", "false"
+            buildConfigField("String","MTA_APP_KEY","\"123456\"")
+        }
+
+        debug {
+            buildConfigField "boolean", "ANALYTICS_SWITCH", "false"
+            buildConfigField("String","MTA_APP_KEY","\"123456\"")
         }
     }
 }
@@ -23,4 +30,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
+
+    debugCompile 'com.apkfuns.logutils:library:1.4.2'
+    releaseCompile 'com.apkfuns.logutils:logutils-no-op:1.4.2.1'
 }
